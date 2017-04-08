@@ -8,11 +8,19 @@ export default function(start, end, data) {
   const getNeighbours = neighbours(start, end, sensors);
 
   const aStar = new AStar({
-    metric: distance,
+    metric,
     neighbours: getNeighbours
   });
 
   return aStar.find(start, end);
+}
+
+function metric(a, b) {
+  return distance(a, b) * pollution(a, b);
+}
+
+function pollution(a, b) {
+  return (a.pollution + b.pollution) / 2;
 }
 
 function toSensor({ location, id, pollutionLevel }) {
