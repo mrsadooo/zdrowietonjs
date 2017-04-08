@@ -1,4 +1,5 @@
 import React from 'react';
+import Map from './../map';
 
 class App extends React.Component {
 
@@ -6,7 +7,7 @@ class App extends React.Component {
 
         return (
             <div>
-                Hello World!
+                <Map/>
             </div>
         );
     }
