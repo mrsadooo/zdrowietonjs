@@ -1,10 +1,10 @@
 import Point from './Point';
 
 export default class Sensor extends Point {
-  constructor({ location, id, pollutionLevel }) {
-    super(location.latitude, location.longitude);
+  constructor(latitude, longitude, pollution, id) {
+    super(latitude, longitude);
 
     this.id = id;
-    this.pollution = pollutionLevel;
+    this.pollution = pollution;
   }
 }
