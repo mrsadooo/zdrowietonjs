@@ -2,6 +2,7 @@ import React from 'react'
 import {GOOGLE_KEY} from '../../constants'
 import _ from 'lodash'
 import Marker from '../../models/marker'
+import {connect} from 'react-redux'
 
 class Map extends React.PureComponent {
     constructor() {
@@ -14,7 +15,9 @@ class Map extends React.PureComponent {
     getCurrentLocation() {
         const addUserCurrentPosition = ::this.addUserCurrentPosition;
          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(addUserCurrentPosition);
+            navigator.geolocation.getCurrentPosition(addUserCurrentPosition, () => {
+                this.drawMap();
+            });
          } else {
             console.error('Browser doesn\'t support Geolocation');
             this.drawMap();
@@ -32,7 +35,7 @@ class Map extends React.PureComponent {
             lng: this.userLongitude,
             title: 'My position',
             icon: 'https://maps.google.com/mapfiles/ms/micons/man.png',
-            draggable: true,
+            draggable: false,
             map: this.map
         };
 
@@ -60,6 +63,7 @@ class Map extends React.PureComponent {
     }
 
     render() {
+        console.log('props', this.props)
         return (
             <div className={'google-map'}>
                 <div id="map"></div>
@@ -67,4 +71,29 @@ class Map extends React.PureComponent {
         )
     }
 }
-export default Map;
+
+function mapStateToProps(state) {
+    console.log('mapStateToProps', state)
+    return {
+        isSettingPointAEnabled: state.map.isSettingPointAEnabled,
+        isSettingPointBEnabled: state.map.isSettingPointBEnabled
+    }
+}
+function mapDispatchToProps(dispatch) {
+    return {
+        enableSettingPointA: () => {
+            dispatch({
+                type: SETTING_A_POINT,
+                payload: true
+            })
+        },
+        enableSettingPointB: () => {
+            dispatch({
+                type: SETTING_B_POINT,
+                payload: true
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map)

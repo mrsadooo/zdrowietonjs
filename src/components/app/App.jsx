@@ -8,14 +8,12 @@ class App extends React.Component {
 
     render() {
         return (
-
-            <div>
-                <Provider store={store}>
+            <Provider store={store}>
+                <div>
                     <MapOverlayWrapper/>
-                </Provider>
-                <Map/>
-            </div>
-
+                    <Map/>
+                </div>
+            </Provider>
         );
     }
 }
