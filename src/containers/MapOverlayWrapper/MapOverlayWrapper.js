@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {SETTING_A_POINT, SETTING_B_POINT, SET_SENSORS} from './../../modules/map'
+import {SETTING_A_POINT, SETTING_B_POINT, SET_SENSORS, SET_DEBUG_MODE} from './../../modules/map'
 import PointButton from './../../components/pointButton';
-
+import Toggle from './../../components/toggle'
 import getSensors from './../../common/getSensors';
 import {AIRLY_KEY} from './../../constants'
 class MapOverlay extends React.Component {
@@ -10,6 +10,7 @@ class MapOverlay extends React.Component {
         super()
         this.onStartClick = this.onStartClick.bind(this);
         this.onEndClick = this.onEndClick.bind(this);
+        this.onDebugClick = this.onDebugClick.bind(this);
     }
 
     onStartClick() {
@@ -20,6 +21,10 @@ class MapOverlay extends React.Component {
     onEndClick() {
         const {enableSettingPointB} = this.props;
         enableSettingPointB();
+    }
+
+    onDebugClick() {
+        this.props.setDebugMode(!this.props.debug)
     }
 
     componentWillUpdate(nextProps) {
@@ -45,6 +50,7 @@ class MapOverlay extends React.Component {
             <div className={'map-overlay'}>
                 <PointButton onClick={this.onStartClick} text="A"/>
                 <PointButton onClick={this.onEndClick} text="B"/>
+                <Toggle onClick={this.onDebugClick}/>
             </div>
         )
     }
@@ -55,7 +61,8 @@ function mapStateToProps(state) {
         isSettingPointAEnabled: state.map.isSettingPointAEnabled,
         isSettingPointBEnabled: state.map.isSettingPointBEnabled,
         pointA: state.map.pointA,
-        pointB: state.map.pointB
+        pointB: state.map.pointB,
+        debug: state.map.debug
     }
 }
 function mapDispatchToProps(dispatch) {
@@ -78,6 +85,12 @@ function mapDispatchToProps(dispatch) {
                 payload: {
                     sensors
                 }
+            })
+        },
+        setDebugMode: (value) => {
+            dispatch({
+                type: SET_DEBUG_MODE,
+                payload: value
             })
         }
     }

@@ -5,13 +5,15 @@ export const SETTING_B_POINT = 'SETTING_B_POINT'
 export const SET_POINT_A = 'SET_POINT_A'
 export const SET_POINT_B = 'SET_POINT_B'
 export const SET_SENSORS = 'SET_SENSORS'
+export const SET_DEBUG_MODE = 'SET_DEBUG_MODE'
 
 const defaultState = {
     pointA: null,
     pointB: null,
     sensors: [],
     isSettingPointAEnabled: false,
-    isSettingPointBEnabled: false
+    isSettingPointBEnabled: false,
+    isDebug: false
 }
 
 const reducer = (state = defaultState, action) => {
@@ -20,13 +22,15 @@ const reducer = (state = defaultState, action) => {
         case SETTING_A_POINT:
             return _.extend(clonedObject, {
                 isSettingPointAEnabled: true,
-                pointA: null
+                pointA: null,
+                sensors: []
             })
             break;
         case SETTING_B_POINT:
             return Object.assign(clonedObject, {
                 isSettingPointBEnabled: true,
-                pointB: null
+                pointB: null,
+                sensors: []
             })
             break;
         case SET_POINT_A:
@@ -54,6 +58,11 @@ const reducer = (state = defaultState, action) => {
         case SET_SENSORS:
             return Object.assign(clonedObject, {
                 "sensors": action.payload.sensors
+            })
+            break;
+        case SET_DEBUG_MODE:
+            return Object.assign(clonedObject, {
+                "debug": action.payload
             })
             break;
     }
