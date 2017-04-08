@@ -4,10 +4,12 @@ export const SETTING_A_POINT = 'SETTING_A_POINT'
 export const SETTING_B_POINT = 'SETTING_B_POINT'
 export const SET_POINT_A = 'SET_POINT_A'
 export const SET_POINT_B = 'SET_POINT_B'
+export const SET_SENSORS = 'SET_SENSORS'
 
 const defaultState = {
     pointA: null,
     pointB: null,
+    sensors: [],
     isSettingPointAEnabled: false,
     isSettingPointBEnabled: false
 }
@@ -47,6 +49,11 @@ const reducer = (state = defaultState, action) => {
                     title: 'END position',
                     icon: 'https://maps.google.com/mapfiles/ms/micons/flag.png'
                 }
+            })
+            break;
+        case SET_SENSORS:
+            return Object.assign(clonedObject, {
+                sensors: action.type.sensors
             })
             break;
     }

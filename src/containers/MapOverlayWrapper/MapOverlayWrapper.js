@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {SETTING_A_POINT, SETTING_B_POINT} from './../../modules/map'
+import {SETTING_A_POINT, SETTING_B_POINT, SET_SENSORS} from './../../modules/map'
 import PointButton from './../../components/pointButton';
-
+// import getSensors from './../../common/getSensors';
+import {AIRLY_KEY} from './../../constants'
 class MapOverlay extends React.Component {
     constructor() {
         super()
@@ -20,6 +21,20 @@ class MapOverlay extends React.Component {
         enableSettingPointB();
     }
 
+    componentWillUpdate(nextProps) {
+        if (nextProps.pointA && nextProps.pointB) {
+            let latmin = nextProps.pointA.lat;
+            let lngmin = nextProps.pointA.lng;
+            let latmax = nextProps.pointB.lat;
+            let lngmax = nextProps.pointB.lng;
+            let sensors = getSensors(latmin, lngmin, latmax, lngmax, {AIRLY_KEY});
+            console.log('SENSORS', sensors);
+            if (sensors) {
+                this.props.setSensors(sensors);
+            }
+        }
+    }
+
     render() {
         console.log('props', this.props)
         return (
@@ -32,10 +47,11 @@ class MapOverlay extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log('mapStateToProps', state)
     return {
         isSettingPointAEnabled: state.map.isSettingPointAEnabled,
-        isSettingPointBEnabled: state.map.isSettingPointBEnabled
+        isSettingPointBEnabled: state.map.isSettingPointBEnabled,
+        pointA: state.map.pointA,
+        pointB: state.map.pointB
     }
 }
 function mapDispatchToProps(dispatch) {
@@ -50,6 +66,14 @@ function mapDispatchToProps(dispatch) {
             dispatch({
                 type: SETTING_B_POINT,
                 payload: true
+            })
+        },
+        setSensors: (sensors) => {
+            dispatch({
+                type: SET_SENSORS,
+                payload: {
+                    sensors
+                }
             })
         }
     }
