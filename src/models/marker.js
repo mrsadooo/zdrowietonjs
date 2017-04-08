@@ -14,7 +14,7 @@ export default class Marker {
       		icon: this.getMarkerIcon(icon)
 		});
 		this.infoWindow = new MarkerInfoWindow();
-		this.getInfoWindow();
+		// this.getInfoWindow();
 	}
 
 	getMarker() {
