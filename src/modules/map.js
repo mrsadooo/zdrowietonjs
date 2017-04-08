@@ -23,6 +23,7 @@ const reducer = (state = defaultState, action) => {
             return _.extend(clonedObject, {
                 isSettingPointAEnabled: true,
                 pointA: null,
+                pointB: null,
                 sensors: []
             })
             break;
@@ -40,7 +41,7 @@ const reducer = (state = defaultState, action) => {
                     lat: action.payload.lat,// use data from action
                     lng: action.payload.lng, // use data from action
                     title: 'My position',
-                    icon: 'https://maps.google.com/mapfiles/ms/micons/man.png'
+                    icon: 'user_point'
                 }
             })
             break;
@@ -51,7 +52,7 @@ const reducer = (state = defaultState, action) => {
                     lat: action.payload.lat,// use data from action
                     lng: action.payload.lng, // use data from action
                     title: 'END position',
-                    icon: 'https://maps.google.com/mapfiles/ms/micons/flag.png'
+                    icon: 'end_point'
                 }
             })
             break;

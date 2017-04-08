@@ -4,6 +4,8 @@ import _ from 'lodash'
 import Marker from '../../models/marker'
 import {connect} from 'react-redux'
 import {SET_POINT_A, SET_POINT_B, SETTING_A_POINT, SETTING_B_POINT} from '../../modules/map'
+import CalculatePath from '../../common/calculatePath'
+import Point from '../../common/point'
 
 class Map extends React.PureComponent {
     constructor() {
@@ -27,7 +29,7 @@ class Map extends React.PureComponent {
     }
 
     addUserCurrentPosition(position) {
-        console.log(position);
+
         this.userLatitude = _.get(position, 'coords.latitude'),
         this.userLongitude = _.get(position, 'coords.longitude');
         this.drawMap();
@@ -66,14 +68,29 @@ class Map extends React.PureComponent {
 
     redrawMap(nextProps) {
         this.removeAllMarkers();
-        if (nextProps.pointA ) {
+        if (nextProps.pointA) {
             this.addMarkers(nextProps.pointA);
         }
 
         if (nextProps.pointB) {
             this.addMarkers(nextProps.pointB);
+
+
         }
 
+        if (nextProps.sensors.length) {
+            //this.addMarkers(nextProps.sensors);
+            const points = CalculatePath(new Point(nextProps.pointA.lat, nextProps.pointA.lng), new Point(nextProps.pointB.lat, nextProps.pointB.lng), nextProps.sensors);
+
+            this.addMarkers(nextProps.sensors.map((sensor) => {
+                return {icon: `pol_${sensor.pollutionLevel}`, pollutionLevel: sensor.pollutionLevel, id: sensor.id, lat: sensor.location.latitude, lng:sensor.location.longitude}
+            }));
+
+
+            this.addMarkers(points.map((point)=>{
+                return {lat: point.latitude, lng:point.longitude, icon: 'path'};
+            }));
+        }
 
     }
 
@@ -106,7 +123,8 @@ function mapStateToProps(state) {
         isSettingPointAEnabled: state.map.isSettingPointAEnabled,
         isSettingPointBEnabled: state.map.isSettingPointBEnabled,
         pointA: state.map.pointA,
-        pointB: state.map.pointB
+        pointB: state.map.pointB,
+        sensors: state.map.sensors
     }
 }
 function mapDispatchToProps(dispatch) {
