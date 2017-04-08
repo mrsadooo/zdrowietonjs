@@ -5,7 +5,8 @@ import Marker from '../../models/marker'
 import {connect} from 'react-redux'
 import {SET_POINT_A, SET_POINT_B, SETTING_A_POINT, SETTING_B_POINT} from '../../modules/map'
 import CalculatePath from '../../common/calculatePath'
-import Point from '../../common/point'
+import Point from '../../common/Point'
+import { GOOGLE_ROUTE_CHUNK_LENGTH } from '../../constants';
 
 class Map extends React.PureComponent {
     constructor() {
@@ -14,6 +15,8 @@ class Map extends React.PureComponent {
         this.userLatitude = 52.2251325;
         this.userLongitude = 20.972243799999998;
         this.markers = [];
+        this.directionsService = new google.maps.DirectionsService;
+        this.directionsDisplay = new google.maps.DirectionsRenderer;
     }
 
     getCurrentLocation() {
@@ -66,41 +69,75 @@ class Map extends React.PureComponent {
         this.getCurrentLocation();
     }
 
+    drawChunkRoute(points) {
+      const googlePoints = points.map(point => ({
+        lat: point.latitude,
+        lng: point.longitude
+      }));
+
+      const origin = googlePoints.shift();
+      const destination = googlePoints.pop();
+      const waypoints = googlePoints.map(point => ({
+        location: `${point.lat},${point.lng}`,
+        stopover: true
+      }));
+
+      const travelMode = 'WALKING';
+
+      this.directionsService.route({
+        origin: `${origin.lat},${origin.lng}`,
+        destination: `${destination.lat},${destination.lng}`,
+        waypoints,
+        travelMode
+      }, (response, status) => {
+        if (status === 'OK') {
+          this.directionsDisplay.setDirections(response);
+        }
+      });
+    }
+
+    drawRoute(points) {
+        let position = 0;
+
+        do {
+            this.drawChunkRoute(points.slice(position, GOOGLE_ROUTE_CHUNK_LENGTH));
+        } while((position += GOOGLE_ROUTE_CHUNK_LENGTH - 1) < points.length);
+    }
+
     redrawMap(nextProps) {
+        this.directionsDisplay.setMap(null);
         this.removeAllMarkers();
+
         if (nextProps.pointA) {
             this.addMarkers(nextProps.pointA);
         }
 
         if (nextProps.pointB) {
             this.addMarkers(nextProps.pointB);
-
-
         }
 
         if (nextProps.sensors.length) {
-            //this.addMarkers(nextProps.sensors);
+            this.directionsDisplay.setMap(this.map);
+
             const points = CalculatePath(new Point(nextProps.pointA.lat, nextProps.pointA.lng), new Point(nextProps.pointB.lat, nextProps.pointB.lng), nextProps.sensors);
 
             this.addMarkers(nextProps.sensors.map((sensor) => {
                 return {icon: `pol_${sensor.pollutionLevel}`, pollutionLevel: sensor.pollutionLevel, id: sensor.id, lat: sensor.location.latitude, lng:sensor.location.longitude}
             }));
 
-
             this.addMarkers(points.map((point)=>{
                 return {lat: point.latitude, lng:point.longitude, icon: 'path'};
             }));
-        }
 
+            this.drawRoute(points);
+        }
     }
 
     removeAllMarkers() {
-
         for (var i = 0; i < this.markers.length; i++ ) {
             this.markers[i].getMarker().setMap(null);
         }
         this.markers.length = 0;
-
     }
 
     componentWillUpdate(nextProps) {
