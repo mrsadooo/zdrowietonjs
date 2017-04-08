@@ -33,5 +33,9 @@ module.exports = [
     {
         test: /\.(jpg|jpeg|png|gif)$/,
         loader: 'file?name=images/[name].[ext]'
+    },
+    {
+        test: /\.json$/,
+        loader: "json-loader"
     }
 ];

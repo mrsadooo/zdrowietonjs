@@ -92,7 +92,6 @@ class Map extends React.PureComponent {
 
     render() {
         console.log('props', this.props)
-
         return (
             <div className={'google-map'}>
                 <div id="map"></div>

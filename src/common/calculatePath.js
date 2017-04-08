@@ -1,5 +1,5 @@
 import distance from './distance';
-import { AStar } from 'path-finder';
+import AStar from './path/AStar';
 import Sensor from './Sensor';
 import neighbours from './neighbours';
 
