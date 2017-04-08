@@ -125,10 +125,6 @@ class Map extends React.PureComponent {
                 return {icon: `pol_${sensor.pollutionLevel}`, pollutionLevel: sensor.pollutionLevel, id: sensor.id, lat: sensor.location.latitude, lng:sensor.location.longitude}
             }));
 
-            this.addMarkers(points.map((point)=>{
-                return {lat: point.latitude, lng:point.longitude, icon: 'path'};
-            }));
-
             this.drawRoute(points);
         }
     }

@@ -10,15 +10,16 @@ const DIRECTIONS = [
 
 export default class Map {
   constructor(start, end, sensors) {
+
     const points = [start, end, ...sensors];
 
-    this.sensors = sensors;
+    this.sensors = sensors.filter(isWorking);
     this.latitudes = points.map(toLatitude);
     this.longitudes = points.map(toLongitude);
 
     this.latitudes.sort(asc);
     this.longitudes.sort(asc);
-    this.map = createMap(this.latitudes, this.longitudes, points, sensors);
+    this.map = createMap(this.latitudes, this.longitudes, sensors);
   }
 
   getNeighbours(lat, lon) {
@@ -31,6 +32,10 @@ export default class Map {
       .map(toMapPoint(this.map))
       .filter(isNotNull);
   }
+}
+
+function isWorking(sensor) {
+  return sensor.pollution !== 0;
 }
 
 function isNotNull(item) {
@@ -65,23 +70,23 @@ function toLongitude(point) {
   return point.longitude;
 }
 
-function createMap(latitudes, longitudes, points, sensors) {
-  return latitudes.map(createLangitudeMapper(longitudes, points, sensors));
+function createMap(latitudes, longitudes, sensors) {
+  return latitudes.map(createLangitudeMapper(longitudes, sensors));
 }
 
-function createLangitudeMapper(longitudes, points, sensors) {
+function createLangitudeMapper(longitudes, sensors) {
   return function(lan) {
-    return longitudes.map(createLongitudeMapper(lan, points, sensors));
+    return longitudes.map(createLongitudeMapper(lan, sensors));
   };
 }
 
-function createLongitudeMapper(lat, points, sensors) {
+function createLongitudeMapper(lat, sensors) {
   return function(lon) {
-    return getPointByPosition(lat, lon, points, sensors);
+    return getPointByPosition(lat, lon, sensors);
   };
 }
 
-function getPointByPosition(lat, lon, points, sensors) {
+function getPointByPosition(lat, lon, sensors) {
   for (let i = 0; i < sensors.length; i++) {
     const sensor = sensors[i];
 
