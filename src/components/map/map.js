@@ -1,5 +1,5 @@
 import React from 'react'
-import {API_KEY} from './../../constants/google'
+import {GOOGLE_KEY} from '../../constants'
 
 class Map extends React.PureComponent {
     constructor() {
