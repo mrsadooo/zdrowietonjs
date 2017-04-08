@@ -4,10 +4,24 @@ const BASE = 'https://airapi.airly.eu/v1/sensors/current';
 import KrakowSensors from './mocks/krakow.json'
 
 export default function getSensors(latMin, lonMin, latMax, lonMax, {apiKey}, debug = false) {
-    let southwestLat = Math.max(latMin, latMax) + 0.015;
-    let southwestLong = Math.max(lonMin, lonMax) + 0.015;
-    let northeastLat = Math.min(latMin, latMax) + 0.015;
-    let northeastLong = Math.min(lonMin, lonMax) + 0.015;
+
+    const precision = 1;
+    const marginPath = 0.25;
+
+    let southwestLat = Math.min(latMin, latMax);
+    let southwestLong = Math.min(lonMin, lonMax);
+    let northeastLat = Math.max(latMin, latMax);
+    let northeastLong = Math.max(lonMin, lonMax);
+
+    if (+southwestLat.toFixed(precision) === +northeastLat.toFixed(precision)) {
+        southwestLong -= marginPath;
+        northeastLong += marginPath;
+    }
+    else if (+southwestLong.toFixed(precision) === +northeastLong.toFixed(precision)) {
+        southwestLat -= marginPath;
+        northeastLat += marginPath;
+    }
+
     const url = `${BASE}?southwestLat=${southwestLat}&southwestLong=${southwestLong}&northeastLat=${northeastLat}&northeastLong=${northeastLong}`;
     return fetch(url, {
         method: 'GET',
