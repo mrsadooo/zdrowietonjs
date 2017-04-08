@@ -17,20 +17,24 @@ const reducer = (state = defaultState, action) => {
     switch (action.type) {
         case SETTING_A_POINT:
             return _.extend(clonedObject, {
-                isSettingPointAEnabled: true
+                isSettingPointAEnabled: true,
+                pointA: null
             })
             break;
         case SETTING_B_POINT:
             return Object.assign(clonedObject, {
-                isSettingPointBEnabled: true
+                isSettingPointBEnabled: true,
+                pointB: null
             })
             break;
         case SET_POINT_A:
             return Object.assign(clonedObject, {
                 isSettingPointAEnabled: false,
                 pointA: {
-                    lat: 1,// use data from action
-                    lng: 2 // use data from action
+                    lat: action.payload.lat,// use data from action
+                    lng: action.payload.lng, // use data from action
+                    title: 'My position',
+                    icon: 'https://maps.google.com/mapfiles/ms/micons/man.png'
                 }
             })
             break;
@@ -38,8 +42,10 @@ const reducer = (state = defaultState, action) => {
             return Object.assign(clonedObject, {
                 isSettingPointBEnabled: false,
                 pointB: {
-                    lat: 1,// use data from action
-                    lng: 2 // use data from action
+                    lat: action.payload.lat,// use data from action
+                    lng: action.payload.lng, // use data from action
+                    title: 'END position',
+                    icon: 'https://maps.google.com/mapfiles/ms/micons/flag.png'
                 }
             })
             break;

@@ -8,7 +8,7 @@ export default class Marker {
       	 	map: map,
       		title: title,
       		draggable: draggable,
-      		animation: google.maps.Animation.DROP,
+      		// animation: google.maps.Animation.DROP,
       		icon: icon
     	});
 	}
