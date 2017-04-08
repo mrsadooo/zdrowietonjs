@@ -1,5 +1,5 @@
 import {createAction, handleActions} from 'redux-actions'
-
+import _ from 'lodash'
 export const SETTING_A_POINT = 'SETTING_A_POINT'
 export const SETTING_B_POINT = 'SETTING_B_POINT'
 
@@ -11,15 +11,15 @@ const defaultState = {
 }
 
 const reducer = (state = defaultState, action) => {
+    let clonedObject = _.cloneDeep(state);
     switch (action.type) {
         case SETTING_A_POINT:
-            console.log('A')
-            return Object.assign(state, {
+            return _.extend(clonedObject, {
                 isSettingPointAEnabled: true
             })
             break;
         case SETTING_B_POINT:
-            return Object.assign(state, {
+            return Object.assign(clonedObject, {
                 isSettingPointBEnabled: true
             })
             break;
