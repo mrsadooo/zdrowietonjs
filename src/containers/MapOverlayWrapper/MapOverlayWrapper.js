@@ -32,14 +32,15 @@ class MapOverlay extends React.Component {
     }
 
     componentWillUpdate(nextProps) {
-
-        if (((!this.props.pointA && nextProps.pointA) || (!this.props.pointB && nextProps.pointB)) && nextProps.pointA && nextProps.pointB) {
+        if (((this.props.debug !== nextProps.debug) || (!this.props.pointA && nextProps.pointA) || (!this.props.pointB && nextProps.pointB)) && nextProps.pointA && nextProps.pointB) {
 
             let latmin = nextProps.pointA.lat;
             let lngmin = nextProps.pointA.lng;
             let latmax = nextProps.pointB.lat;
             let lngmax = nextProps.pointB.lng;
-            getSensors(latmin, lngmin, latmax, lngmax, {apiKey: AIRLY_KEY}).then((sensors) => {
+            let debug = nextProps.debug
+            getSensors(latmin, lngmin, latmax, lngmax, {apiKey: AIRLY_KEY}, debug).then((sensors) => {
+                console.log('SENSORS',sensors)
                 if (sensors) {
                     this.props.setSensors(sensors);
                 }
