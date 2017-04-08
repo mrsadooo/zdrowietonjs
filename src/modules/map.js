@@ -1,7 +1,7 @@
 import {createAction, handleActions} from 'redux-actions'
 
-export const SETTING_A_POINT = createAction('SETTING_A_POINT')
-export const SETTING_B_POINT = createAction('SETTING_B_POINT')
+export const SETTING_A_POINT = 'SETTING_A_POINT'
+export const SETTING_B_POINT = 'SETTING_B_POINT'
 
 const defaultState = {
     pointA: null,
@@ -10,13 +10,21 @@ const defaultState = {
     isSettingPointBEnabled: false
 }
 
-const reducer = handleActions({
-    [SETTING_A_POINT.type]: (state, {type, payload}) => {
-        return state;
-    },
-    [SETTING_B_POINT.type]: (state, {type, payload}) => {
-        return state;
+const reducer = (state = defaultState, action) => {
+    console.log('REDUCER',)
+    let newState = state;
+    switch (action.type) {
+        case SETTING_A_POINT:
+            newState = Object.assign(state, {
+                isSettingPointAEnabled: true
+            })
+            break;
+        case SETTING_B_POINT:
+            newState = Object.assign(state, {
+                isSettingPointBEnabled: true
+            })
+            break;
     }
-}, defaultState)
-
+    return newState;
+}
 export default  reducer;

@@ -36,10 +36,16 @@ function mapStateToProps() {
 function mapDispatchToProps(dispatch) {
     return {
         enableSettingPointA: () => {
-            dispatch(SETTING_A_POINT(true))
+            dispatch({
+                type: SETTING_A_POINT,
+                payload: true
+            })
         },
         enableSettingPointB: () => {
-            dispatch(SETTING_B_POINT(true))
+            dispatch({
+                type: SETTING_B_POINT,
+                payload: true
+            })
         }
     }
 }
