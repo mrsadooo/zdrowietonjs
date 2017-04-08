@@ -5,6 +5,9 @@ import _ from 'lodash'
 class Map extends React.PureComponent {
     constructor() {
         super()
+        this.map = null;
+        this.userLatitude = null;
+        this.userLongitude = null;
     }
 
     getCurrentLocation() {
@@ -17,19 +20,26 @@ class Map extends React.PureComponent {
     }
 
     addUserCurrentPosition(position) {
-        const latitude = _.get(position, 'coords.latitude'),
-              longitude = _.get(position, 'coords.longitude');
-        this.map.setCenter({lat: latitude, lng: longitude});
+        this.userLatitude = _.get(position, 'coords.latitude'),
+        this.userLongitude = _.get(position, 'coords.longitude');
+
         const marker = {
             position:{
-                lat: latitude,
-                lng: longitude
+                lat: this.userLatitude,
+                lng: this.userLongitude
             },
             title: 'My position',
             icon: 'https://maps.google.com/mapfiles/ms/micons/man.png'
         }
+
+        this.map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: {
+                lat: this.userLatitude, lng: this.userLongitude
+            }
+        });
+
         this.addMarkers(marker);
-        //mainDistansce = distance(latitude, longitude, latitudeEnd, longitudeEnd);
     }
 
     addMarkers(markers) {
@@ -47,12 +57,6 @@ class Map extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
-            center: {
-                lat: -25.363, lng: 131.044
-            }
-        });
         this.getCurrentLocation();
     }
 
