@@ -1,8 +1,7 @@
 export default class MarkerInfoWindow {
-    constructor(Point) {
-        this.Point;
+    constructor() {
         this.infoWindow = new google.maps.InfoWindow({
-            content: this.Point.content
+            content: "Test content!"
         });
     }
 
