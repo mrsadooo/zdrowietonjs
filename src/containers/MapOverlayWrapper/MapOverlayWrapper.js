@@ -4,7 +4,11 @@ import {SETTING_A_POINT, SETTING_B_POINT, SET_SENSORS, SET_DEBUG_MODE} from './.
 import PointButton from './../../components/pointButton';
 import Toggle from './../../components/toggle'
 import getSensors from './../../common/getSensors';
-import {AIRLY_KEY} from './../../constants'
+import { AIRLY_KEY } from './../../constants';
+import Icon from '../../components/icon';
+import StartIcon from '../../resources/icons/start-point.svg';
+import EndIcon from '../../resources/icons/end-point.svg';
+
 class MapOverlay extends React.Component {
     constructor() {
         super()
@@ -49,8 +53,12 @@ class MapOverlay extends React.Component {
     render() {
         return (
             <div className={'map-overlay'}>
-                <PointButton onClick={this.onStartClick} text="A"/>
-                <PointButton onClick={this.onEndClick} text="B"/>
+                <PointButton onClick={this.onStartClick} >
+                    <Icon icon={StartIcon} className="btn-icon" />
+                </PointButton>
+                <PointButton onClick={this.onEndClick} >
+                    <Icon icon={EndIcon} className ="btn-icon" />
+                </PointButton>
                 <Toggle onClick={this.onDebugClick}/>
             </div>
         )

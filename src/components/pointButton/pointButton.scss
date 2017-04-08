@@ -1,11 +1,32 @@
+$blue-p1: #08c;
+
 .point-button {
   button {
-    width: 90px;
-    height: 30px;
-    border: none;
-    background: #d6d6d6;
+    width: 120px;
+    height: 40px;
+    border: 1px solid $blue-p1;
+    border-radius: 6px;
+    background: $blue-p1;
+    color: #fff;
+    margin: 10px;
+    transition: all ease .35s;
+
+    svg {
+      fill: #fff;
+    }
+
     &:active {
       transform: scale(.9);
+    }
+
+    &:hover {
+      background: #fff;
+      color: $blue-p1;
+      cursor: pointer;
+
+      svg {
+        fill: $blue-p1;
+      }
     }
   }
 }

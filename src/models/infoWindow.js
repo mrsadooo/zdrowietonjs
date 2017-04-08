@@ -5,6 +5,8 @@ export default class MarkerInfoWindow {
         });
     }
 
+    
+
     openWindow(map, marker) {
         this.infoWindow.open(map, marker);
     }
