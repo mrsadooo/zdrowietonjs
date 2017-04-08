@@ -5,8 +5,10 @@ import App from './components/app/App.jsx';
 import store from './store';
 import './styles/index.scss';
 
-render(
+window.init = function() {
+  render(
     <Provider store={store}>
-        <App />
+      <App />
     </Provider>,
     document.getElementById('app'));
+};

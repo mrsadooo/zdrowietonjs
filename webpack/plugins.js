@@ -7,8 +7,9 @@ var
 
 const plugins = [
   new HtmlWebpackPlugin({
-    title: 'Leafbaby',
-    template: './webpack/template.html'
+    title: 'Healthy Path',
+    template: './webpack/template.html',
+    inject: false
   }),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
@@ -17,7 +18,7 @@ const plugins = [
 
 if (process.env.NODE_ENV === 'production') {
   plugins.push(
-    new ExtractTextPlugin("leafbaby.css"),
+    new ExtractTextPlugin("smog.css"),
     new WebpackUglifyJsPlugin({
       cacheFolder: path.resolve(__dirname, 'cached_uglify/'),
       minimize: true,
