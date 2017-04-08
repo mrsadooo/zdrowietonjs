@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {SETTING_A_POINT, SETTING_B_POINT} from './../../modules/map'
 import PointButton from './../../components/pointButton';
 
-class MapOverlay extends React.PureComponent {
+class MapOverlay extends React.Component {
     constructor() {
         super()
         this.onStartClick = this.onStartClick.bind(this);
@@ -21,6 +21,7 @@ class MapOverlay extends React.PureComponent {
     }
 
     render() {
+        console.log('props', this.props)
         return (
             <div className={'map-overlay'}>
                 <PointButton onClick={this.onStartClick} text="A"/>
@@ -30,8 +31,12 @@ class MapOverlay extends React.PureComponent {
     }
 }
 
-function mapStateToProps() {
-    return {}
+function mapStateToProps(state) {
+    console.log('state.', state)
+    return {
+        isSettingPointAEnabled: state.map.isSettingPointAEnabled,
+        isSettingPointBEnabled: state.map.isSettingPointBEnabled
+    }
 }
 function mapDispatchToProps(dispatch) {
     return {
