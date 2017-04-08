@@ -15,7 +15,7 @@ class PointButton extends React.PureComponent {
         const {text} = this.props;
         return (
             <div className={'point-button'}>
-                <button onClick={this.onClick}>{text}</button>
+                <button onClick={this.onClick}>{this.props.children}</button>
             </div>
         )
     }
