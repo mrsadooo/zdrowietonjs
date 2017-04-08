@@ -1,0 +1,402 @@
+[
+	{	
+		"id":608,
+		"name":"",
+		"vendor":"Airly",
+		"location":
+			{
+				"latitude":50.04821,
+				"longitude":19.945327
+			},
+		"pollutionLevel":0,
+		"address":{
+			"streetNumber":"1",
+			"route":"Mostowa",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":634,
+		"name":"",
+		"vendor":"Airly",
+		"location":{
+			"latitude":50.102596,
+			"longitude":19.91751
+		},
+		"pollutionLevel":0,
+		"address":{
+			"streetNumber":"12",
+			"route":"Fiolkowa",
+			"locality":"Zielonki",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":173,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.057536999999996,
+			"longitude":19.897547
+		},
+		"pollutionLevel":2,
+		"address":{
+			"streetNumber":"20",
+			"route":"Vlastimila Hofmana",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":174,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.057241999999995,
+			"longitude":19.914873999999998
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"7",
+			"route":"Leona Wyczólkowskiego",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":177,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.093619,
+			"longitude":19.924138
+		},
+		"pollutionLevel":1,
+		"address": {
+			"streetNumber":"6A",
+			"route":"Grochowiaka",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":178,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.033195,
+			"longitude":19.900714
+		},
+		"pollutionLevel":2,
+		"address": {
+			"streetNumber":"9A",
+			"route":"Sodowa",
+			"locality":"Kraków-Podgórze",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":179,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.07769,
+			"longitude":19.935776999999998
+		},
+		"pollutionLevel":4,
+		"address": {
+			"streetNumber":"22",
+			"route":"Pradnicka",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":181,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.055161999999996,
+			"longitude":19.947014
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"38",
+			"route":"Starowislna",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":184,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.047736,
+			"longitude":19.919646
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"6",
+			"route":"Adolfa Nowaczynskiego",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":185,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.08547,
+			"longitude":19.899209
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"102",
+			"route":"Radzikowskiego",
+			"locality":"Kraków-Krowodrza",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":187,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.096968999999994,
+			"longitude":19.914773999999998
+		},
+		"pollutionLevel":0,
+		"address": { 
+			"streetNumber":"133A",
+			"route":"Wladyslawa Lokietka",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":189,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.062418,
+			"longitude":19.928368
+		},
+		"pollutionLevel":2,
+		"address": {
+			"streetNumber":"27",
+			"route":"Studencka",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":204,
+		"name":"",
+		"vendor":"Airly",
+		"location": { 
+			"latitude":50.062006,
+			"longitude":19.940984
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"4B",
+			"route":"Mikolajska",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":205,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.088719,
+			"longitude":19.910314
+		},
+		"pollutionLevel":2,
+		"address": {
+			"route":"Ludomira Rózyckiego",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":206,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.108332,
+			"longitude":19.924003
+		},
+		"pollutionLevel":2,
+		"address": {
+			"streetNumber":"15",
+			"route":"Dlugopolska",
+			"locality":"Zielonki",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":213,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.067502999999995,
+			"longitude":19.906294
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"1",
+			"route":"Witolda Budryka",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":216,
+		"name":"",
+		"vendor":"Airly",
+		"location": { 
+			"latitude":50.043527,
+			"longitude":19.925963
+		},
+		"pollutionLevel":3,
+		"address":{ 
+			"streetNumber":"5",
+			"route":"Slomiana",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{
+		"id":220,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.079671999999995,
+			"longitude":19.949189999999998
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"3",
+			"route":"Rogatka",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{	
+		"id":140,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.057745999999995,
+			"longitude":19.961374
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"",
+			"route":"",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{	
+		"id":622,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.044418,
+			"longitude":19.952199
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"",
+			"route":"",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{	
+		"id":147,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.048924,
+			"longitude":19.962260999999998
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"",
+			"route":"",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{	
+		"id":171,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.084134,
+			"longitude":19.968415999999998
+		},
+		"pollutionLevel":2,
+		"address": {
+			"streetNumber":"",
+			"route":"",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{	
+		"id":196,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.066747,
+			"longitude":19.962083
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"",
+			"route":"",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{	
+		"id":201,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.054907,
+			"longitude":19.956501
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"",
+			"route":"",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	},
+	{	
+		"id":214,
+		"name":"",
+		"vendor":"Airly",
+		"location": {
+			"latitude":50.071718999999995,
+			"longitude":19.962346999999998
+		},
+		"pollutionLevel":3,
+		"address": {
+			"streetNumber":"",
+			"route":"",
+			"locality":"Kraków",
+			"country":"Poland"
+		}
+	}
+]
