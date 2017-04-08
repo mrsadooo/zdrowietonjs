@@ -2,6 +2,7 @@ $blue-p1: #08c;
 
 .point-button {
   button {
+    outline: none !important;
     width: 120px;
     height: 40px;
     border: 1px solid $blue-p1;
