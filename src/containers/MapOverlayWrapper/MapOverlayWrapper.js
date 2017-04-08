@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {SETTING_A_POINT, SETTING_B_POINT, SET_SENSORS} from './../../modules/map'
 import PointButton from './../../components/pointButton';
+
 import getSensors from './../../common/getSensors';
 import {AIRLY_KEY} from './../../constants'
 class MapOverlay extends React.Component {
@@ -24,6 +25,7 @@ class MapOverlay extends React.Component {
     componentWillUpdate(nextProps) {
 
         if (((!this.props.pointA && nextProps.pointA) || (!this.props.pointB && nextProps.pointB)) && nextProps.pointA && nextProps.pointB) {
+
             let latmin = nextProps.pointA.lat;
             let lngmin = nextProps.pointA.lng;
             let latmax = nextProps.pointB.lat;
@@ -35,7 +37,6 @@ class MapOverlay extends React.Component {
             }).catch(() => {
                 return;
             });
-
         }
     }
 
