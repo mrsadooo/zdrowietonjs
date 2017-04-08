@@ -82,8 +82,13 @@ class Map extends React.PureComponent {
             //this.addMarkers(nextProps.sensors);
             const points = CalculatePath(new Point(nextProps.pointA.lat, nextProps.pointA.lng), new Point(nextProps.pointB.lat, nextProps.pointB.lng), nextProps.sensors);
 
+            this.addMarkers(nextProps.sensors.map((sensor) => {
+                return {icon: `pol_${sensor.pollutionLevel}`, pollutionLevel: sensor.pollutionLevel, id: sensor.id, lat: sensor.location.latitude, lng:sensor.location.longitude}
+            }));
+
+
             this.addMarkers(points.map((point)=>{
-                return {lat: point.latitude, lng:point.longitude};
+                return {lat: point.latitude, lng:point.longitude, icon: 'path'};
             }));
         }
 
