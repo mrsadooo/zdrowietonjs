@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {SETTING_A_POINT, SETTING_B_POINT, SET_SENSORS} from './../../modules/map'
 import PointButton from './../../components/pointButton';
-// import getSensors from './../../common/getSensors';
+import getSensors from './../../common/getSensors';
 import {AIRLY_KEY} from './../../constants'
 class MapOverlay extends React.Component {
     constructor() {
@@ -22,16 +22,20 @@ class MapOverlay extends React.Component {
     }
 
     componentWillUpdate(nextProps) {
-        if (nextProps.pointA && nextProps.pointB) {
+
+        if (((!this.props.pointA && nextProps.pointA) || (!this.props.pointB && nextProps.pointB)) && nextProps.pointA && nextProps.pointB) {
             let latmin = nextProps.pointA.lat;
             let lngmin = nextProps.pointA.lng;
             let latmax = nextProps.pointB.lat;
             let lngmax = nextProps.pointB.lng;
-            let sensors = getSensors(latmin, lngmin, latmax, lngmax, {AIRLY_KEY});
-            console.log('SENSORS', sensors);
-            if (sensors) {
-                this.props.setSensors(sensors);
-            }
+            getSensors(latmin, lngmin, latmax, lngmax, {apiKey: AIRLY_KEY}).then((sensors) => {
+                if (sensors) {
+                    this.props.setSensors(sensors);
+                }
+            }).catch(() => {
+                return;
+            });
+
         }
     }
 
