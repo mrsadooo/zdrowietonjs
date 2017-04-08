@@ -10,6 +10,14 @@ $blue-p1: #08c;
     color: #fff;
     margin: 10px;
     transition: all ease .35s;
+    .btn-icon {
+      width: 100%;
+      svg {
+        $size: 30px;
+        width: $size;
+        height: $size;
+      }
+    }
 
     svg {
       fill: #fff;
