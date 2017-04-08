@@ -11,20 +11,19 @@ const defaultState = {
 }
 
 const reducer = (state = defaultState, action) => {
-    console.log('REDUCER',)
-    let newState = state;
     switch (action.type) {
         case SETTING_A_POINT:
-            newState = Object.assign(state, {
+            console.log('A')
+            return Object.assign(state, {
                 isSettingPointAEnabled: true
             })
             break;
         case SETTING_B_POINT:
-            newState = Object.assign(state, {
+            return Object.assign(state, {
                 isSettingPointBEnabled: true
             })
             break;
     }
-    return newState;
+    return defaultState;
 }
 export default  reducer;
