@@ -1,13 +1,14 @@
 import React from 'react'
 import {GOOGLE_KEY} from '../../constants'
 import _ from 'lodash'
+import Marker from '../../models/marker'
 
 class Map extends React.PureComponent {
     constructor() {
         super()
         this.map = null;
-        this.userLatitude = null;
-        this.userLongitude = null;
+        this.userLatitude = 52.2251325;
+        this.userLongitude = 20.972243799999998;
     }
 
     getCurrentLocation() {
@@ -16,43 +17,41 @@ class Map extends React.PureComponent {
             navigator.geolocation.getCurrentPosition(addUserCurrentPosition);
          } else {
             console.error('Browser doesn\'t support Geolocation');
+            this.drawMap();
          }
     }
 
     addUserCurrentPosition(position) {
+        console.log(position);
         this.userLatitude = _.get(position, 'coords.latitude'),
         this.userLongitude = _.get(position, 'coords.longitude');
+        this.drawMap();
 
         const marker = {
-            position:{
-                lat: this.userLatitude,
-                lng: this.userLongitude
-            },
+            lat: this.userLatitude,
+            lng: this.userLongitude,
             title: 'My position',
-            icon: 'https://maps.google.com/mapfiles/ms/micons/man.png'
-        }
-
-        this.map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
-            center: {
-                lat: this.userLatitude, lng: this.userLongitude
-            }
-        });
+            icon: 'https://maps.google.com/mapfiles/ms/micons/man.png',
+            draggable: true,
+            map: this.map
+        };
 
         this.addMarkers(marker);
     }
 
     addMarkers(markers) {
         markers = Array.isArray(markers) ? markers : [markers];
-        markers.map((marker) => {
-            marker = new google.maps.Marker({
-              position: marker.position,
-              map: this.map,
-              title: marker.title,
-              draggable: marker.draggable,
-              animation: google.maps.Animation.DROP,
-              icon: marker.icon
-            });
+        markers = markers.map((marker) => {
+            return new Marker({...marker});
+        });
+    }
+
+    drawMap() {
+        this.map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: {
+                lat: this.userLatitude, lng: this.userLongitude
+            }
         });
     }
 
