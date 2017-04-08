@@ -53,7 +53,7 @@ const reducer = (state = defaultState, action) => {
             break;
         case SET_SENSORS:
             return Object.assign(clonedObject, {
-                sensors: action.type.sensors
+                "sensors": action.payload.sensors
             })
             break;
     }

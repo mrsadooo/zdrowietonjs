@@ -41,7 +41,6 @@ class MapOverlay extends React.Component {
     }
 
     render() {
-        console.log('props', this.props)
         return (
             <div className={'map-overlay'}>
                 <PointButton onClick={this.onStartClick} text="A"/>
