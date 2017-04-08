@@ -82,11 +82,11 @@ function createLongitudeMapper(lat, points, sensors) {
 }
 
 function getPointByPosition(lat, lon, points, sensors) {
-  for (let i = 0; i < points.length; i++) {
-    const point = points[i];
+  for (let i = 0; i < sensors.length; i++) {
+    const sensor = sensors[i];
 
-    if (point.latitude === lat && point.longitude === lon) {
-      return point;
+    if (sensor.latitude === lat && sensor.longitude === lon) {
+      return sensor;
     }
   }
 
