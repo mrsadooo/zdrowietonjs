@@ -32,7 +32,7 @@ class MapOverlay extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log('state.', state)
+    console.log('mapStateToProps', state)
     return {
         isSettingPointAEnabled: state.map.isSettingPointAEnabled,
         isSettingPointBEnabled: state.map.isSettingPointBEnabled
