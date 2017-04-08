@@ -1,0 +1,11 @@
+.point-button {
+  button {
+    width: 90px;
+    height: 30px;
+    border: none;
+    background: #d6d6d6;
+    &:active {
+      transform: scale(.9);
+    }
+  }
+}
